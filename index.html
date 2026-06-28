@@ -1,0 +1,703 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolFix Service - Прайс-лист на ремонт холодильного оборудования (B2B)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0e1a;
+            --accent-blue: #00d4ff;
+            --accent-gold: #ffd700;
+            --text-light: #e0e0e0;
+            --table-header-bg: #1a2a4a;
+            --table-row-bg-odd: #121a30;
+            --table-row-bg-even: #0a0e1a;
+            --border-color: #334466;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #121a30;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .logo {
+            font-size: 4em;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+        }
+
+        .company-name {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .phone-number {
+            font-size: 2.8em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .phone-number:hover {
+            background-color: rgba(0, 212, 255, 0.1);
+            transform: scale(1.03);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 40px rgba(0, 212, 255, 0.3);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            color: var(--text-light);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--accent-gold);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+
+        th, td {
+            padding: 18px 25px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--accent-blue);
+            font-size: 1.2em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: var(--table-row-bg-odd);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--table-row-bg-even);
+        }
+
+        tbody tr:hover {
+            background-color: #1e2b4d;
+            transform: scale(1.005);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .price-range {
+            font-weight: 500;
+            color: var(--accent-gold);
+            white-space: nowrap; /* Prevent price from wrapping */
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .advantage-card {
+            background-color: #1c253b;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .advantage-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background-color: #2a354f;
+            border-color: var(--accent-blue);
+        }
+
+        .advantage-card span {
+            font-size: 3.5em;
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .advantage-card p {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .partnership-block, .brands-block {
+            padding: 40px;
+            background-color: #1c253b;
+            border-radius: 12px;
+            margin-top: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+        }
+
+        .partnership-block ul, .brands-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .partnership-block li, .brands-block li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .partnership-block li::before {
+            content: '✔️'; /* Checkmark for partnership */
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+        .brands-block li::before {
+            content: '⭐'; /* Star for brands */
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+
+        footer {
+            background-color: #121a30;
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top: 2px solid var(--accent-gold);
+            font-size: 1em;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footnote {
+            font-size: 0.9em;
+            color: #999;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 2.5em;
+            }
+            .phone-number {
+                font-size: 2em;
+                padding: 8px 15px;
+            }
+            .tagline {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            th, td {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+            .partnership-block ul, .brands-block ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 3em;
+            }
+            .company-name {
+                font-size: 2em;
+            }
+            .phone-number {
+                font-size: 1.5em;
+                padding: 6px 10px;
+            }
+            .tagline {
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            th, td {
+                padding: 10px;
+                font-size: 0.8em;
+            }
+            .advantage-card span {
+                font-size: 2.5em;
+            }
+            .advantage-card p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">❄️</div>
+            <h1 class="company-name">CoolFix Service</h1>
+            <a href="tel:060035123" class="phone-number">060 035 123</a>
+            <p class="tagline">Профессиональный ремонт холодильного оборудования в Молдове</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="diagnostics">
+            <h2>1. Диагностика и Выезд</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Стоимость (MDL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Первичная диагностика в сервисе</td>
+                        <td class="price-range">150-250</td>
+                    </tr>
+                    <tr>
+                        <td>Выезд мастера по Кишинёву</td>
+                        <td class="price-range">200-350</td>
+                    </tr>
+                    <tr>
+                        <td>Выезд по районам Молдовы</td>
+                        <td class="price-range">350-600</td>
+                    </tr>
+                    <tr>
+                        <td>Срочный выезд (до 2 часов)</td>
+                        <td class="price-range">+50% к стоимости выезда</td>
+                    </tr>
+                    <tr>
+                        <td>Ночной/праздничный выезд</td>
+                        <td class="price-range">+100% к стоимости выезда</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="household-repair">
+            <h2>2. Ремонт Бытовых Холодильников</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Стоимость (MDL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Диагностика и устранение утечки фреона</td>
+                        <td class="price-range">400-800</td>
+                    </tr>
+                    <tr>
+                        <td>Заправка фреона R134a (до 150г)</td>
+                        <td class="price-range">350-600</td>
+                    </tr>
+                    <tr>
+                        <td>Заправка фреона R600a (до 100г)</td>
+                        <td class="price-range">400-700</td>
+                    </tr>
+                    <tr>
+                        <td>Замена компрессора бытового</td>
+                        <td class="price-range">800-2500 (+ стоимость компрессора)</td>
+                    </tr>
+                    <tr>
+                        <td>Замена терморегулятора (термостата)</td>
+                        <td class="price-range">250-500</td>
+                    </tr>
+                    <tr>
+                        <td>Замена таймера оттайки</td>
+                        <td class="price-range">200-400</td>
+                    </tr>
+                    <tr>
+                        <td>Замена нагревательного элемента</td>
+                        <td class="price-range">300-600</td>
+                    </tr>
+                    <tr>
+                        <td>Замена пускозащитного реле</td>
+                        <td class="price-range">150-350</td>
+                    </tr>
+                    <tr>
+                        <td>Замена вентилятора внутреннего</td>
+                        <td class="price-range">300-700</td>
+                    </tr>
+                    <tr>
+                        <td>Замена электронной платы управления</td>
+                        <td class="price-range">500-1500 (+ стоимость платы)</td>
+                    </tr>
+                    <tr>
+                        <td>Замена уплотнительной резинки двери</td>
+                        <td class="price-range">200-500</td>
+                    </tr>
+                    <tr>
+                        <td>Устранение посторонних шумов</td>
+                        <td class="price-range">200-600</td>
+                    </tr>
+                    <tr>
+                        <td>Ремонт системы No-Frost</td>
+                        <td class="price-range">500-1200</td>
+                    </tr>
+                    <tr>
+                        <td>Устранение течи воды внутри</td>
+                        <td class="price-range">150-400</td>
+                    </tr>
+                    <tr>
+                        <td>Замена LED подсветки</td>
+                        <td class="price-range">150-300</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="commercial-repair">
+            <h2>3. Коммерческое Холодильное Оборудование</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Стоимость (MDL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Диагностика холодильной витрины/шкафа</td>
+                        <td class="price-range">300-500</td>
+                    </tr>
+                    <tr>
+                        <td>Заправка фреона R404A</td>
+                        <td class="price-range">600-1200</td>
+                    </tr>
+                    <tr>
+                        <td>Заправка фреона R407C</td>
+                        <td class="price-range">600-1200</td>
+                    </tr>
+                    <tr>
+                        <td>Заправка фреона R410A</td>
+                        <td class="price-range">500-1000</td>
+                    </tr>
+                    <tr>
+                        <td>Замена компрессора коммерческого (малый)</td>
+                        <td class="price-range">1500-4000 (+ компрессор)</td>
+                    </tr>
+                    <tr>
+                        <td>Замена компрессора коммерческого (большой)</td>
+                        <td class="price-range">3000-8000 (+ компрессор)</td>
+                    </tr>
+                    <tr>
+                        <td>Замена конденсатора</td>
+                        <td class="price-range">800-2500</td>
+                    </tr>
+                    <tr>
+                        <td>Замена испарителя</td>
+                        <td class="price-range">1000-3500</td>
+                    </tr>
+                    <tr>
+                        <td>Замена терморегулятора (прессостат, датчик)</td>
+                        <td class="price-range">400-900</td>
+                    </tr>
+                    <tr>
+                        <td>Замена вентилятора испарителя</td>
+                        <td class="price-range">400-900</td>
+                    </tr>
+                    <tr>
+                        <td>Замена вентилятора конденсатора</td>
+                        <td class="price-range">300-700</td>
+                    </tr>
+                    <tr>
+                        <td>Устранение обмерзания</td>
+                        <td class="price-range">400-1000</td>
+                    </tr>
+                    <tr>
+                        <td>Ремонт/замена электронного контроллера</td>
+                        <td class="price-range">600-2000 (+ контроллер)</td>
+                    </tr>
+                    <tr>
+                        <td>Замена реле времени оттайки</td>
+                        <td class="price-range">300-700</td>
+                    </tr>
+                    <tr>
+                        <td>Чистка конденсатора (грязезащита)</td>
+                        <td class="price-range">300-600</td>
+                    </tr>
+                    <tr>
+                        <td>Пайка медного контура (до 3 мест)</td>
+                        <td class="price-range">500-1200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="industrial-repair">
+            <h2>4. Холодильные Камеры и Промышленное Оборудование</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Стоимость (MDL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Диагностика холодильной камеры</td>
+                        <td class="price-range">500-800</td>
+                    </tr>
+                    <tr>
+                        <td>Заправка агрегата (промышленный)</td>
+                        <td class="price-range">1000-3000</td>
+                    </tr>
+                    <tr>
+                        <td>Замена компрессорного агрегата</td>
+                        <td class="price-range">5000-20000 (+ агрегат)</td>
+                    </tr>
+                    <tr>
+                        <td>Ремонт системы управления камеры</td>
+                        <td class="price-range">800-3000</td>
+                    </tr>
+                    <tr>
+                        <td>Установка нового датчика температуры</td>
+                        <td class="price-range">400-900</td>
+                    </tr>
+                    <tr>
+                        <td>Монтаж/демонтаж холодильного агрегата</td>
+                        <td class="price-range">2000-5000</td>
+                    </tr>
+                    <tr>
+                        <td>Ремонт сплит-агрегата</td>
+                        <td class="price-range">1500-5000</td>
+                    </tr>
+                    <tr>
+                        <td>Устранение течи в промышленном контуре</td>
+                        <td class="price-range">1000-3000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="maintenance">
+            <h2>5. Техническое Обслуживание (договор ТО)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Стоимость (MDL/мес)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ТО 1 единицы бытового холодильника/мес</td>
+                        <td class="price-range">150-300</td>
+                    </tr>
+                    <tr>
+                        <td>ТО 1 витрины/шкафа коммерческого/мес</td>
+                        <td class="price-range">300-700</td>
+                    </tr>
+                    <tr>
+                        <td>Комплексное ТО 5+ единиц/мес (скидка)</td>
+                        <td class="price-range">Договорная цена</td>
+                    </tr>
+                    <tr>
+                        <td>Комплексное ТО 10+ единиц/мес</td>
+                        <td class="price-range">Индивидуально</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="advantages">
+            <h2>Наши Преимущества</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <span>❄️</span>
+                    <p>Опыт 15+ лет</p>
+                </div>
+                <div class="advantage-card">
+                    <span>🏆</span>
+                    <p>Гарантия до 24 месяцев</p>
+                </div>
+                <div class="advantage-card">
+                    <span>⚡</span>
+                    <p>Выезд за 2 часа</p>
+                </div>
+                <div class="advantage-card">
+                    <span>🔧</span>
+                    <p>Работаем 24/7</p>
+                </div>
+                <div class="advantage-card">
+                    <span>📋</span>
+                    <p>Сертифицированные мастера</p>
+                </div>
+                <div class="advantage-card">
+                    <span>💼</span>
+                    <p>500+ довольных клиентов</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="partnership">
+            <h2>Условия Партнёрства</h2>
+            <div class="partnership-block">
+                <ul>
+                    <li>Скидка 10% от 5 единиц в обслуживании</li>
+                    <li>Скидка 15% от 10 единиц</li>
+                    <li>Скидка 25% при годовом договоре ТО</li>
+                    <li>Приоритетный выезд для партнёров (до 1 часа)</li>
+                    <li>Ежемесячные акты выполненных работ</li>
+                    <li>Работа по договору и безналичный расчёт</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="brands">
+            <h2>Обслуживаемые Марки</h2>
+            <div class="brands-block">
+                <ul>
+                    <li>Samsung</li>
+                    <li>LG</li>
+                    <li>Bosch</li>
+                    <li>Indesit</li>
+                    <li>Atlant</li>
+                    <li>Whirlpool</li>
+                    <li>Liebherr</li>
+                    <li>Electrolux</li>
+                    <li>Beko</li>
+                    <li>Haier</li>
+                    <li>Gorenje</li>
+                    <li>Zanussi</li>
+                    <li>AEG</li>
+                    <li>Miele</li>
+                    <li>Sub-Zero</li>
+                    <li>Vestfrost</li>
+                    <li>Caravell</li>
+                    <li>Arneg</li>
+                    <li>Costan</li>
+                    <li>Hussmann</li>
+                    <li>Carrier</li>
+                    <li>Frigoglass</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Телефон: <a href="tel:060035123">060 035 123</a></p>
+            <p>Адрес: г. Кишинёв, Молдова</p>
+            <p>Email: <a href="mailto:coolfix@mail.md">coolfix@mail.md</a></p>
+        </div>
+    </footer>
+
+    <div class="footnote container">
+        <p>Данный прайс-лист является коммерческим предложением. Окончательная стоимость определяется после диагностики. Скидки для постоянных партнёров — от 10% до 25%. Цены указаны без стоимости запасных частей.</p>
+    </div>
+</body>
+</html>
