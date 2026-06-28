@@ -287,7 +287,7 @@
 
     // ─── ЗАГРУЗКА ЦЕН ───────────────────────────────────────────────────────
     async function loadPrices() {
-        const PRICES_URL = 'https://raw.githubusercontent.com/Artsav1234/coolfix-pricelist/main/prices.json';
+        const PRICES_URL = 'https://raw.githubusercontent.com/Artsav1234/coolfix/main/prices.json';
         try {
             const res  = await fetch(PRICES_URL + '?t=' + Date.now());
             const data = await res.json();
